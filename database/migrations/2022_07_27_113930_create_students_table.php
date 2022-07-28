@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->date('date_of_birth');
-            $table->boolean('fee')->default(false);
+            $table->integer('age');
+            $table->string('avatar')->nullable();
+            $table->boolean('paid')->default(false);
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
             $table->text('address');
             $table->foreignId('township_id')->constrained()->cascadeOnDelete();

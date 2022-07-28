@@ -5,16 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Student extends Model
 {
     use HasFactory;
+
+    protected $cast = [
+        'paid' => 'boolean',
+    ];
 
     protected $fillable = [
         'name',
         'email',
         'phone',
         'age',
-        'fee',
+        'paid',
         'address',
         'course_id',
         'township_id',
