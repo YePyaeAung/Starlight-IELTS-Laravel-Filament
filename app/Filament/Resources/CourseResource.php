@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CourseResource\Pages;
 use App\Filament\Resources\CourseResource\RelationManagers;
+use App\Filament\Resources\CourseResource\RelationManagers\StudentsRelationManager;
 use App\Models\Course;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -65,7 +66,7 @@ class CourseResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StudentsRelationManager::class,
         ];
     }
     

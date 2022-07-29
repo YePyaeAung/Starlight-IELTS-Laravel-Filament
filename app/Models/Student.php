@@ -41,4 +41,9 @@ class Student extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+    public function marks()
+    {
+        return $this->hasMany(Mark::class);
+    }
 }

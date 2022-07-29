@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TownshipResource\Pages;
 use App\Filament\Resources\TownshipResource\RelationManagers;
+use App\Filament\Resources\TownshipResource\RelationManagers\StudentsRelationManager;
 use App\Models\Township;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -71,7 +72,7 @@ class TownshipResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StudentsRelationManager::class,
         ];
     }
     

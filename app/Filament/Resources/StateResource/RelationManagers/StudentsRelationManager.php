@@ -1,12 +1,8 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\StateResource\RelationManagers;
 
-use App\Filament\Resources\StudentResource\Pages;
-use App\Filament\Resources\StudentResource\RelationManagers;
-use App\Filament\Resources\StudentResource\RelationManagers\MarksRelationManager;
 use App\Models\State;
-use App\Models\Student;
 use App\Models\Township;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -15,28 +11,25 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\BooleanColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class StudentResource extends Resource
+class StudentsRelationManager extends RelationManager
 {
-    protected static ?string $model = Student::class;
+    protected static string $relationship = 'students';
 
-    protected static ?string $navigationIcon = 'heroicon-o-user-group';
-
-    protected static ?int $navigationSort = 4;
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
-            Card::make([
+            ->schema([
+                Card::make([
                     TextInput::make('name')
                         ->required()
                         ->maxLength(255),
@@ -117,29 +110,17 @@ class StudentResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                SelectFilter::make('course')->relationship('course', 'name'),
+                //
+            ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
-    }
-    
-    public static function getRelations(): array
-    {
-        return [
-            MarksRelationManager::class,
-        ];
-    }
-    
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListStudents::route('/'),
-            'create' => Pages\CreateStudent::route('/create'),
-            'edit' => Pages\EditStudent::route('/{record}/edit'),
-        ];
     }    
 }

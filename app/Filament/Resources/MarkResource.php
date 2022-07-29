@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MarkResource\Pages;
 use App\Filament\Resources\MarkResource\RelationManagers;
+use App\Filament\Resources\MarkResource\RelationManagers\StudentRelationManager;
 use App\Models\Course;
 use App\Models\Mark;
 use App\Models\Student;
@@ -106,7 +107,7 @@ class MarkResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StudentRelationManager::class,
         ];
     }
     
