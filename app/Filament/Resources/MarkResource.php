@@ -16,6 +16,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -92,7 +93,7 @@ class MarkResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('course')->relationship('course', 'name')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
