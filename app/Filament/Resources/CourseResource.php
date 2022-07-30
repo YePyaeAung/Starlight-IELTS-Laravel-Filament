@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CourseResource\Pages;
 use App\Filament\Resources\CourseResource\RelationManagers;
 use App\Filament\Resources\CourseResource\RelationManagers\StudentsRelationManager;
+use App\Filament\Resources\CourseResource\Widgets\CourseStatsOverview;
 use App\Models\Course;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -67,6 +68,13 @@ class CourseResource extends Resource
     {
         return [
             StudentsRelationManager::class,
+        ];
+    }
+
+    public static function getWidgets() : array
+    {
+        return[
+            CourseStatsOverview::class,
         ];
     }
     
