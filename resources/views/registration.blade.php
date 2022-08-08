@@ -1,10 +1,15 @@
 <x-guest-layout>
-    <section class="py-15 bg-gray-50">
+    <div class="my-16"></div>
+    <section class="py-15">
         <div class="container items-center max-w-xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
-        <div class="w-full max-w-xl">
-            <form action="{{url('/registration')}}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        {{-- <div class="w-full max-w-xl"> --}}
+            <form action="{{url('/registration')}}" method="post" enctype="multipart/form-data" class="bg-slate-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @csrf
-                <div class="my-4">
+                <div class="mb-4">
+                    <label for="profile_image" class="block text-gray-700 text-sm font-bold mb-2">Profile Image</label>
+                    <input type="file" name="profile_image" id="profile_image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
                     <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
                     <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
@@ -25,7 +30,7 @@
                     <textarea name="address" id="address" cols="30" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
                 </div>
                 <div class="mb-4">
-                    <label for="course" class="block text-gray-700 text-sm font-bold mb-2">Course</label>
+                    <label for="course" class="block text-gray-700 text-sm font-bold mb-2">Course (Choose correctly course you want to join)</label>
                     <select name="course_id" id="course" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         @foreach ($courses as $course)
                             <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -39,7 +44,7 @@
                 </div>
             </form>
             
-        </div>
+        {{-- </div> --}}
         </div>
     </section>
 </x-guest-layout>

@@ -11,6 +11,7 @@ use App\Models\Township;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -19,6 +20,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\BooleanColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
@@ -37,6 +39,10 @@ class StudentResource extends Resource
         return $form
         ->schema([
             Card::make([
+                    FileUpload::make('profile_image')
+                        ->avatar()
+                        ->directory('public/student-avatars')
+                        ->disk('local'),
                     TextInput::make('name')
                         ->required()
                         ->maxLength(255),
@@ -85,6 +91,10 @@ class StudentResource extends Resource
             ->columns([
                 TextColumn::make('id')
                     ->sortable(),
+                ImageColumn::make('profile_image')
+                    ->label('Avatar')
+                    ->rounded()
+                    ->disk('local'),
                 TextColumn::make('name')
                     ->sortable()
                     ->searchable(),

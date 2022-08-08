@@ -105,7 +105,7 @@
         </div>
         <div class="container w-full px-5 py-6 mx-auto">
             <div class="grid lg:grid-cols-4 gap-y-6">
-                @foreach ($courses as $course)
+                @forelse ($courses as $course)
                 <div class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
                     {{-- <img class="w-full h-48" src="{{ Storage::url($menu->image) }}" alt="Image" /> --}}
                     {{-- <img class="w-full h-48" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_ScHrl7OYNY2UV8w0taTwAmLOrelTtdIgnw&usqp=CAU" alt="Image" /> --}}
@@ -120,7 +120,11 @@
                         <span class="text-xl text-green-600">${{ $course->price}}</span>
                     </div> --}}
                 </div>
-                @endforeach
+                @empty
+                    <div class="max-w-xs mx-4 mb-2 rounded-lg show-lg">
+                        <h1 class="mb-3 text-2xl text-center font-semibold tracking-tight text-green-600 uppercase">No Course Found!</h1>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>

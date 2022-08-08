@@ -15,6 +15,7 @@ class Student extends Model
     ];
 
     protected $fillable = [
+        'profile_image',
         'name',
         'email',
         'phone',

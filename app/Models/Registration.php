@@ -10,6 +10,7 @@ class Registration extends Model
     use HasFactory;
 
     protected $fillable = [
+        'profile_image',
         'name',
         'email',
         'phone',
